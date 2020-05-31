@@ -1,8 +1,10 @@
 # How to create a static web site that is hosted on S3 with support for HTTPs
 
-Note that AWS'92s services are flexible and customizable. There'92s a lot of different options. This documents how to set up a simple static site that supports https. A lot of the features of AWS'92s services were not used and I don'92t know how to use them, so in some cases I don'92t know why certain steps were taken; I just know that the documentation said to do it that way.
+Audience - those that need or want to set up static sites like the lobby and host them securely on S3 and are not AWS ninja's.
 
-Assuming that we may have to go back and change things as we add more functionality, I have provided a brief explanation of why certain steps were taken, so that it isn'92t a mystery the next time.
+Note that AWS's services are flexible and customizable. There's a lot of different options. This documents how to set up a simple static site that supports https. A lot of the features of AWS's services were not used and I don'92t know how to use them, so in some cases I don't know why certain steps were taken; I just know that the documentation said to do it that way.
+
+Assuming that we may have to go back and change things as we add more functionality, I have provided a brief explanation of why certain steps were taken, so that it isn't a mystery the next time.
 
 
 Also note that there was some trial and error as I tried to customize the set-up and try different options. I left details of the errors at the bottom as they might come in handy.
