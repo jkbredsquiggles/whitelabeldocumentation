@@ -25,7 +25,7 @@ For this example we used the following.
 King Virtual Events - 0083 3495 0635
 N. Virginia
 
-AWS must be provide the Domain Name Services for the domain (at least I think it does). Instructions for this are out of scope.
+AWS must provide the Domain Name Services for the domain (at least I think it does). Instructions for this are out of scope.
 
 # Details
 
@@ -38,11 +38,11 @@ https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-wa
 
 These instructions show how to set up a publicly accessible bucket that has been configured to host a static web site in the file index.html. See the Trial and Error section for why this configuration is used.
 
-Here'92s the take-away for a static web site.
+Here's the take-away for a static web site.
 
 1. Turn off the block public level access flag and clear all four options under the Block Public Access section. Note that this is a top level lock that prevents bucket contents from being made public, but
 when turned off, buck content access still can be specified.
-2. To create a static site, clink on the bucket'92s Properties
+2. To create a static site, clink on the bucket's Properties
 3. Click on the Static Web Site hosting box, it will open
 4. Choose Use this bucket to host a static site
 5. Specify index.html as the static file
@@ -55,7 +55,7 @@ Next step, provide HTTPs support.
 
 ## Create a CloudFront distribution
 
-This serves two functions. First, it'92s a CDN that caches content closer to users to speed up response time. Second, it'92s how we can set up secure access to the site on AWS. We probably don'92t need much of the CDN functionality for the lobby site, so I choose the cheapest and default options for caching.
+This serves two functions. First, it's a CDN that caches content closer to users to speed up response time. Second, it's how we can set up secure access to the site on AWS. We probably don't need much of the CDN functionality for the lobby site, so I choose the cheapest and default options for caching.
 
 
 1. Select web delivery method (you will have to choices, web delivery or streaming (I think)
@@ -95,8 +95,8 @@ If the certificate was being created as part of the configuration of a CloudFron
 
 # Status
 
-S3 bucket exists and is public. Hosts the login page which likely doesn'92t work due to it'92s links.
-CloudFront does not have TLS because I'92m waiting for the certificate.
+S3 bucket exists and is public. Hosts the login page which likely doesn't work due to it's links.
+TLS works and the page is accessible via lobby.virtualvenue.ca/index.html
 
 
 # Trial and Error Notes
@@ -111,7 +111,7 @@ Attempts were made to both use S3 as a service and block access. They failed. Bu
 
 One thing difference between the web service style bucket and the web site bucket is that one is more likely to see XML error messages.
 
-I have experience with a public static web site. Although using S3 permissions to lock things down might have given us some options, it is OK to have the content in bucket be public - it'92s going to be accessed publicly via CLoudFront anyway.
+I have experience with a public static web site. Although using S3 permissions to lock things down might have given us some options, it is OK to have the content in bucket be public - it's going to be accessed publicly via CLoudFront anyway.
 
 ## Cloud Front
 
@@ -122,9 +122,7 @@ access the private bucket when serving content. To do so I tried the following o
 3. Grant Read Permissions on Bucket 
   - Given that the bucket was locked down above, then say yes, so cloud front will update the policies so this distribution can read the bucket, instead of us manually updating the S3 bucket policies
 
-That didn'92t work (again likely do to the testing issues mentioned in the S3 section), so I made the bucket public and turned Restrict bucket access off. The other options (e.g. Grant Read Permissions, Create Origin Access Identity) were no longer visible (I also had to remove the policy that was create in the above attempt from the S3 bucket).
-
-
+That didn't work (again likely do to the testing issues mentioned in the S3 section), so I made the bucket public and turned Restrict bucket access off. The other options (e.g. Grant Read Permissions, Create Origin Access Identity) were no longer visible (I also had to remove the policy that was create in the above attempt from the S3 bucket).
 
 
 # TO DO 
