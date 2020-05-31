@@ -80,6 +80,9 @@ User management
       - not sure if you will have to create  a role each time or not - I will look into this later
       - upload the file.
 
+#Next Steps & Questions
+
+- Research Amazon SES to undersatn customization / integration for emails
 
       
 
