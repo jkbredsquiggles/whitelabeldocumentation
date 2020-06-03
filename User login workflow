@@ -1,1 +1,24 @@
-User login workflow defined below:
+User login workflow defined below
+
+User receives email containing:
+  Link to unique virtual venue login page
+  Username
+  Temporary password
+
+User clicks on link. 
+
+  If not logged in:
+    Prompted to enter valid username and valid temporary password and selects 'sign in'
+    If first sign in, prompted to create new password.
+    User enters new password and selects 'update password'
+    User is taken to Virtual Lobby page
+      If event is not yet LIVE display 'splash page'
+      If event is LIVE, send to active lobby
+      If event is OVER, display 'event no longer active' splash page
+    
+  If logged in:
+    User is taken to Virtual Lobby page
+       If event is not yet LIVE display 'splash page'
+       If event is LIVE, send to active lobby
+       If event is OVER, display 'event no longer active' splash page
+   
