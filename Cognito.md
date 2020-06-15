@@ -60,7 +60,7 @@ Modify App Client Settings - we might not use this unless we redirect users to t
 Click Launch Hosted UI to be sent to the login page
 
 
-To use custom domain - will do this later
+To use custom domain - will do this later, not sure if this is required when the hosted UI is not used
 
 - Go to App integration.Domain nam
   - Select Use your domain - will need  a certificate from AWS and need to update domain alias
@@ -84,6 +84,7 @@ User management
 
 - Research Amazon SES to undersatn customization / integration for emails
 
+See https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html
       
 
   
