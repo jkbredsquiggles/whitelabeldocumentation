@@ -74,11 +74,47 @@ User management
   - Create User - pretty much self explanatory
   - Import Users
     - Click on download  csv header. It will download a file that is a template for adding users
-    - edit the file in excel, I’m pretty sure you can leave many of the fields blank, for the above configuration I think only email is required (maybe with a bunch of trailing commas). We’ll have to test.
-    - click create import job
+    - edit the file in excel (or Numbers?) or a text editor. If editing in a spreadsheet, ensure that the file is saved as a csv. Note that there are some formatting rules, e.g. proper csv files require quotes around strings but aws does not want them. Also, if a name as a comma in it, put an escape backslash before it. For security reasons, you can't supply a password, the new user will be asked to pick a new password. A sample file that meets our current user pool criteria is provided below. The full rules for the csv file can be found at https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool-csv-header.html . A quick subset follows: 
+      - cognito:username
+      - cognito:mfa_enabled
+      - email_verified 
+      - phone_number_verified
+      - email (if email_verified is true)
+      - phone_number (if phone_number_verified is true)
+      - Any attributes that you marked as required when you created the user pool 
+      - One of email_verified or phone_verified must be true.
+    - click create import job (this is the job management screen)
       - looks like you have to create a name , maybe each time
-      - not sure if you will have to create  a role each time or not - I will look into this later
-      - upload the file.
+      - select or create a name for the user role that is required so that the Cognito import job can create log file entries and store them in CloudWatch. Cognito-UserImport-Role has already been created, so use it for now.
+      - select the file to upload
+      - click create job. You will be return to the job management screen. Select you job and click start. Jobs are asynchronous. The job will start, and the status will be set to Pending. Click refresh to view the update or go look a the logs. Logs will be generated and then at some point in the future the job status will be updated.
+      - you can view the job history on CloudWatch 
+        - go to the cloudwatch service. On the left panel, click logs, then click view log groups. The logs for cognito import should show up under /aws/cognito/userpools/poolid/poolname. At this point there is only one poolId and one pool name (which will likely be the event name in the future), so it should be easy to find the log group.
+        - click on the log group. There will be one set of entries (log stream) for each import job (the last portion of the log stream name will match the job name you selected above). Click on the lock stream name. There should be one log entry for each user with information to indicate whether the user was imported OK or not. If all users failed, there is likely a problem with the format of the csv file (e.g. missing column). If a few users failed, the entries for those users can be copied to another file, corrected, and uploaded in a new job.
+    - Users are not sent email notifications (at least not in the default import process). Users must use the forgot password process.
+
+
+Sample csv upload:
+```
+cognito:username,email,email_verified,cognito:mfa_enabled,phone_number_verified,name,given_name,family_name,middle_name,nickname,preferred_username,profile,picture,website,gender,birthdate,zoneinfo,locale,phone_number,address,updated_at
+address@example.ca,address@example.ca,true,false,false,,,,,,,,,,,,,,,,
+address2@example.ca,address2@example.ca,true,false,false,,,,,,,,,,,,,,,,
+```
+
+Sample log file:
+```
+2020-06-17T13:14:04.300-04:00
+Cognito User Pools Import - Test Log
+
+2020-06-17T13:14:05.897-04:00
+Cognito User Pools Import - Test Log
+
+2020-06-17T13:14:06.093-04:00
+[SUCCEEDED] Line Number 2 - The import succeeded.
+
+2020-06-17T13:14:06.093-04:00
+[SUCCEEDED] Line Number 3 - The import succeeded.
+```
 
 #Next Steps & Questions
 
@@ -86,7 +122,8 @@ User management
 
 See https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html
       
-
+- Investigate whether a lambda trigger can be used to send an email for user import or use SES to send a bulk signup message
+  - And modify the signin page to support a "newly registered" option.
   
 
 
