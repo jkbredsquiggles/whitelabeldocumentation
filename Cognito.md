@@ -1,10 +1,12 @@
 
+# Setting up Cognito
+
 Log in
 Select Cognito from the Services
 Select Manage User Pools
 
 
-To Create a User pool
+## To Create a User pool
 - pick a pool name, e.g. the event name 
 - pick default
   - under attributes 
@@ -24,7 +26,18 @@ To Create a User pool
     - don’t provide a role for SMS messages (unless you want it)
     - click next step
   - email and  SMS configuration
-    . will probably want to use Amazon SES but to do so we’ll need to configure your domain. I used cognito, which means the emails have amazon addresses
+    - Using Cognito - do this for testing and dev as it is simpler to set up but has email quotas. To use Cognito, just select Cognito and don't both specifying
+    the SES Region, From email address ARN, From email addess, or Reply-To email address fields
+    - Using SES - used for production. It also has a sandbox mode while testing SES (as opposed to the above Cognito service for testing Cognito)
+      - See https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html for general instructions
+      - The SES service must be set up for the domain and email addresses. See the section below for instructions. You will need to pick a from email address and reply to email address. The from email address is used for email transmission respones (e.g. if the email bounces SES or some intermediary can send a notice to from) and the reply to email address is the address that email clients will use if the recipient clicks reply (I think).
+      - We chose info for the from address and noreply as the reply-to address
+      - Specify the region in which SES was set up 
+      - Specify the ARN of the from email address:
+        - SES service -> Email Addresses -> selec the address and click View details
+        - Copy the value of the ARN field and paste it back in the appropriate field on the Cognito page
+        - At this point, you Cognito will likely try to set up permission so that it can use SES. Details about this TBD
+      - Specify the From and Reply to email address - I'm not quite sure why the from field is duplicated nor why the reply-to doesn't require an ARN
     - adjust the email templates - there is some flexibility but I’m not sure how much customization is allowed
     - click next
   - tags - just click next
@@ -35,7 +48,7 @@ To Create a User pool
     - click next
   - review settings and create pool
 
-Create an app client
+## Create an app client
   - not sure exactly what this means, but it roughly means to set up the server so that a given web (or mobile) app can use it.
   - pick a name
   - cognito will generate an id, copy it somewhere safe
@@ -47,7 +60,9 @@ Create an app client
     - Prevent User Existence Errors - Enabled
     - save 
 
-Modify App Client Settings - we might not use this unless we redirect users to the AWS login page instead of embedding it in your web page - to discuss with LightSpeed
+## Modify App Client Settings 
+
+We might not use this unless we redirect users to the AWS login page instead of embedding it in your web page - to discuss with LightSpeed
 - pick call-back URL - where the login page sends you after successful login
 - pick log out URL - the URL that the login service will provide when you logout?
 - Allowed OAuthFlows - don’t know what this is, just followed the start-up guide instructions
@@ -60,13 +75,13 @@ Modify App Client Settings - we might not use this unless we redirect users to t
 Click Launch Hosted UI to be sent to the login page
 
 
-To use custom domain - will do this later, not sure if this is required when the hosted UI is not used
+### To use custom domain 
 
-- Go to App integration.Domain nam
-  - Select Use your domain - will need  a certificate from AWS and need to update domain alias
+skipped this as we figured out how to avoid using the hosted UI and this this section was for setting up a custom domain for the hosted UI
 
 
-User management
+
+## User management
 
 - Log in to AWS and go to Cognito
 - Select General Settings.Users and groups
@@ -116,7 +131,53 @@ Cognito User Pools Import - Test Log
 [SUCCEEDED] Line Number 3 - The import succeeded.
 ```
 
-#Next Steps & Questions
+# Setting up SES
+
+See https://docs.aws.amazon.com/ses/latest/DeveloperGuide/quick-start.html for general instructions on using SES
+
+All the following steps are performed in the SES service. You will need to verify that you own the domain and verify details of your control over the domain to use various features. You will then verify the email accounts that you wish to use with SES and give AWS/SES the right to use those addresses
+
+I set up SES in the same region as Cognito, I don't think that is required.
+
+## Steps
+
+### Verify the domain
+
+This is to confirm with AWS that you have some control over the domain. Under SES-> Identity Management -> Domains, select verify a new domain. SES will walk you through the process, which is roughly:
+- enter your domain name
+- follow their instructions for modifying a TXT record on the domain - details depend on your DNS provider but they are intitive.
+- once SES confirms that the TXT record has been modified (it could take a while), then it will indicate that the domain has been verified
+
+#### DKIM
+
+This is another verification section related to sending email that is further used to confirm that email has been sent from someone that controls the domain. It was listed as an option step, but I did it nonetheless. The process is similar to verifying the domain, but this time CNAME records are modified with your DNS provider. Again, once AWS/SES confirms that the CNAME records have been created, it will indicate that the DKIM is verified.
+
+#### Custom Mail From Domain
+
+At this point we don't use this.
+
+### Verify email addresses
+
+For each email address that is used by SES, verify the email address. To do so:
+- go to SES-> Identity Management -> Email Addresses
+- click Verify a New Email address
+- enter the full email address (e.g. info@domain.com)
+- AWS will send an email with a confirmation link to the address 
+- when received click the provided link and follow the instructions to complete the verificaiton process
+
+You should then be able to use the email on SES, in our case that means use the address for Cognito.
+
+
+
+# Status
+
+- Cognito is set up in N-Virginia region
+- SES is set up in N-Virginia region
+
+
+
+
+# Next Steps & Questions
 
 - Research Amazon SES to undersatn customization / integration for emails
 
