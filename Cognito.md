@@ -34,10 +34,10 @@ Select Manage User Pools
       - We chose info for the from address and noreply as the reply-to address
       - Specify the region in which SES was set up 
       - Specify the ARN of the from email address:
-        - SES service -> Email Addresses -> selec the address and click View details
+        - SES service -> Email Addresses -> select the address and click View details
         - Copy the value of the ARN field and paste it back in the appropriate field on the Cognito page
-        - At this point, you Cognito will likely try to set up permission so that it can use SES. Details about this TBD
-      - Specify the From and Reply to email address - I'm not quite sure why the from field is duplicated nor why the reply-to doesn't require an ARN
+      - Specify the From and Reply to email address - I'm not quite sure why the from field is duplicated nor why the reply-to doesn't require an ARN but I think it is because
+      from has a few meanings, first the verified account that is registered in SES for sending emails, second the from field in the actual email with additional things like the nice name (I suspect that emails must be the same with a possibly different nice name) and since the reply email address is not used to send emails it can be anything.
     - adjust the email templates - there is some flexibility but I’m not sure how much customization is allowed
     - click next
   - tags - just click next
