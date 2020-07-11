@@ -183,8 +183,7 @@ You should then be able to use the email on SES, in our case that means use the 
 
 See https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html
       
-- Investigate whether a lambda trigger can be used to send an email for user import or use SES to send a bulk signup message
-  - And modify the signin page to support a "newly registered" option.
+- Use SES to send a bulk signup message - the account is set up, we need to do some administrative stuff to switch out of sandbox mode
   
 
 
