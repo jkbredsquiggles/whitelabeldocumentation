@@ -18,6 +18,8 @@ The projected configuration application is publically exposed via the AWS API Ga
 
 # Operations Notes
 
+## General Notes and those relevant to code updates
+
 The source for our lambda applications are currently in the StaticCognitoPOC project - in the public/static/lambda folder.
 
 Although they are part of the StaticCongnitoPOC project, they are not deployed to AWS via Amplify at this time (haven't had the time to figure out how to do it), so we deploy them manually.
