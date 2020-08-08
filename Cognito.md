@@ -63,11 +63,12 @@ Select Manage User Pools
 
 ## Modify App Client Settings 
 
-We might not use this unless we redirect users to the AWS login page instead of embedding it in your web page - to discuss with LightSpeed
+We apparently need to set callback URLS in order to use OAuth (which is required to integrate with our lambdas). We may figure out other option later.
+- Select the Cognito User Pool as the identity provider
 - pick call-back URL - where the login page sends you after successful login
 - pick log out URL - the URL that the login service will provide when you logout?
 - Allowed OAuthFlows - don’t know what this is, just followed the start-up guide instructions
-  - Authorization code grant
+  - Authorization code grant (I've since turned this off and things seem to work, both the demo pool (StaticCognitoPOC) and our first event have this off)
   - Implicit Grant
   - NOT client credentials
 - Allowed OAuthScope calls - don’t know what this is, just followed the start-up guide instructions
@@ -78,7 +79,7 @@ Click Launch Hosted UI to be sent to the login page
 
 ### To use custom domain 
 
-skipped this as we figured out how to avoid using the hosted UI and this this section was for setting up a custom domain for the hosted UI
+Set up a custom domain. Use the event name.
 
 
 
