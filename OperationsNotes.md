@@ -35,11 +35,11 @@ Update configuration in :
    - update assets urls to point to new custom assets 
    - for initial versions, may need to include the attendee list as configuration
 - attendees lambda 
-  - cognito pool id, region, and client app
+  - cognito pool id, region
   - full host name - used to validate requests
   - list of attendee attributes to pull from cognito (or whatever)
 - custom authentication tool 
-  - cognito pool id, region, and client app
+  - cognito pool id, region
   - least significant component of host name - this app keys the config lookup ONLY on pool Id as cognito can only provide that. host name is not used for validation logic, just to calculate tags for the email, e.g. the site url
   - email subject
 - protectedresource
