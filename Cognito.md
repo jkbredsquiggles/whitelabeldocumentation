@@ -12,7 +12,7 @@ Select Manage User Pools
   - under attributes 
     - decide whether people can sign in with username or email or phone
     - decide whether people can use email or phone number as their user name
-    - decide what information is required (just email?)
+    - decide what information is required (just email?) (When we set up the initial pool the email field was selected as required, for Deighton we did not. Both seemed to work OK)
     - click next step
   - signup workflow
     - password strength - choose defaults
@@ -41,6 +41,7 @@ Select Manage User Pools
     - adjust the email templates - there is some flexibility but I’m not sure how much customization is allowed
     - click next
   - tags - just click next
+  - triggers - Add and entry for the Custom Mssage trigger. Set it to the Lamdba that handles custom notices (customPOCRegistrationNotice). Click save.
   - do you want to remember user’s devices - I don’t know so I said no.
     - click next
   - app client - click next (set up app later)
