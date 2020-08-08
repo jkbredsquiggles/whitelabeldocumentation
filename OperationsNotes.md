@@ -23,29 +23,6 @@ Steps for updating site and supporting applications to support a new event
 - Stop. Decide whether site is ready to go live
 - Upload real users
 
-## Configuration
-
-
-
-Update configuration in :
-- site’s config.
- - need config section for site (flesh out details later), but here’s the first items:
-   - cognito pool id, region, and app client id in the auth section
-   - gateway API urls in the protected resource section (after gateway API created, see below)
-   - update assets urls to point to new custom assets 
-   - for initial versions, may need to include the attendee list as configuration
-- attendees lambda 
-  - cognito pool id, region
-  - full host name - used to validate requests
-  - list of attendee attributes to pull from cognito (or whatever)
-- custom authentication tool 
-  - cognito pool id, region
-  - least significant component of host name - this app keys the config lookup ONLY on pool Id as cognito can only provide that. host name is not used for validation logic, just to calculate tags for the email, e.g. the site url
-  - email subject
-- protectedresource
-  - cognito pool id, region
-  - full host name - used to validate requests
-  - response data - currently just the playerId (used for both player and main stage chat)
 
 ## Create gateway API
 
@@ -78,6 +55,28 @@ Update configuration in :
           - Type = Cognito
           - specify the Cognito pool
           - token source = Authorization (from which header does the gateway get the token)
+
+## Configuration
+
+Update configuration in :
+- site’s config.
+ - need config section for site (flesh out details later), but here’s the first items:
+   - cognito pool id, region, and app client id in the auth section
+   - gateway API urls in the protected resource section (after gateway API created, see below)
+   - update assets urls to point to new custom assets 
+   - for initial versions, may need to include the attendee list as configuration
+- attendees lambda 
+  - cognito pool id, region
+  - full host name - used to validate requests
+  - list of attendee attributes to pull from cognito (or whatever)
+- custom authentication tool 
+  - cognito pool id, region
+  - least significant component of host name - this app keys the config lookup ONLY on pool Id as cognito can only provide that. host name is not used for validation logic, just to calculate tags for the email, e.g. the site url
+  - email subject
+- protectedresource
+  - cognito pool id, region
+  - full host name - used to validate requests
+  - response data - currently just the playerId (used for both player and main stage chat)
 
 ## Deploy Everything 
 
