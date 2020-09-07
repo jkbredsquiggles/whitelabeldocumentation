@@ -44,7 +44,7 @@ Select Manage User Pools
   - triggers - Add and entry for the Custom Mssage trigger. Set it to the Lamdba that handles custom notices (customPOCRegistrationNotice). Click save.
   - do you want to remember user’s devices - I don’t know so I said no.
     - click next
-  - app client - click next (set up app later)
+  - app client - click next (set up app client later after the pool is created, see below)
   - custom workflows - accept default, will figure this out later
     - click next
   - review settings and create pool
@@ -74,7 +74,6 @@ We apparently need to set callback URLS in order to use OAuth (which is required
 - Allowed OAuthScope calls - don’t know what this is, just followed the start-up guide instructions
   - all
 
-Click Launch Hosted UI to be sent to the login page
 
 
 ### To use custom domain 
