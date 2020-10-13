@@ -41,7 +41,7 @@ Select Manage User Pools
     - adjust the email templates - there is some flexibility but I’m not sure how much customization is allowed
     - click next
   - tags - just click next
-  - triggers - Add and entry for the Custom Mssage trigger. Set it to the Lamdba that handles custom notices (customPOCRegistrationNotice). Click save.
+  - triggers - Add and entry for the Custom Message trigger. Set it to the Lamdba that handles custom notices (customPOCRegistrationNotice). Click save.
   - do you want to remember user’s devices - I don’t know so I said no.
     - click next
   - app client - click next (set up app client later after the pool is created, see below)
