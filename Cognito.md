@@ -50,7 +50,7 @@ Select Manage User Pools
   - review settings and create pool
 
 ## Create an app client
-  - not sure exactly what this means, but it roughly means to set up the server so that a given web (or mobile) app can use it.
+  - not sure exactly what this means, but it roughly means to set up the server so that a given web (or mobile) app can use it. As of the Oct events, we may not need to use this as the site seems to work without it (including authorizors on the API gateway. So, for now, this step apparently can be skipped).
   - pick a name
   - cognito will generate an id, copy it somewhere safe
   - turn off app client secret (that’s used by web side apps)
