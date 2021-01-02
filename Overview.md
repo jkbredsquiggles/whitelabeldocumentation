@@ -16,6 +16,7 @@ The have roughly the same high level structure.
 
 - A static site, hosted on AWS amplify which also provides CI/CD
 - For sites that require authentication, a Cognito service (most likely one per event/organization)
+- API Gateways that provide access the the configuration lambdas.
 - Lambda services to provide:
   - protected configuration information (e.g. player clip id) based on event/organization
   - customizable emails (currently hardcoded) based on event/organization
@@ -24,7 +25,9 @@ The have roughly the same high level structure.
 - AWS TLS certificate management
 - AWS Route 53 for DNS
 
-Each event currently has it's own subdomain, configured via Amplify
+Each event currently has it's own subdomain, configured via Amplify.
+
+There current setup is one API Gateway per event that points to a single lambda that is used for both protected and public configuration data for all events. We are investigating migrated to a setup that will have one configuration per event - using CloudFormation stacks. The goal is to use CloudFormation to make a simple and robust process for both creating and destroying the components used for events and to allow for code changes to be deployed with less need to worry about backwards compatibility; events are short lived, may require custom code, and run concurrently so, given that the operation costs of supporting custom instances are low it seems easier to take on the costs of running multiple systems in parallel than it is to try to support live backwards compatible updates.
 
 Information on the components with operations notes are in the sibling MD documents. The documents are organized by the primary component, e.g.
 the Cognito component also contains some notes on SES, Route 53, and I think certificate management as required to complete Cognito administrative/Ops workflows.
