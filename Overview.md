@@ -25,9 +25,17 @@ the Cognito component also contains some notes on SES, Route 53, and I think cer
 Instructions on Amplify are currently in the site documentation (possibly only in the members only venue as the instructions for the simple site are a duplicate). They include instructions on how to set up custom domains with TLS support.
 
 
+# Some helpful images
+
+## Components of a simple event site
 
 
+![simple event site](plantumldiagrams/artefacts/simplesystem.png)
 
+## Components of a simple event site with authenticated access
+
+
+![authenticated simple event site](plantumldiagrams/artefacts/simplesystemwithauthentication.png)
 
 
 
