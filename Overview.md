@@ -2,7 +2,15 @@
 
 There are currently two systems:
 - A simple one page site with no authentication that serves the player (SimpleEventStage)
-- A members only venue hall site with break out sesssion, a lobby, various rooms, and other features (StaticCognitoPOC)
+- A configurable venue hall site (virtualvenu) with optional authentication, a lobby, and zero of more of the following:
+  - break out sesssion
+  - various single function rooms (i.e. the "room" has a link to something, usually a video chat)
+  - various multi function rooms
+  - a video library
+  - two rooms to display arbitrary data, usually used for attendee/speaker lists with links to external services
+  - a chat room
+  - a main stage with chat
+  
 
 The have roughly the same high level structure.
 
@@ -17,7 +25,6 @@ The have roughly the same high level structure.
 - AWS Route 53 for DNS
 
 Each event currently has it's own subdomain, configured via Amplify
-
 
 Information on the components with operations notes are in the sibling MD documents. The documents are organized by the primary component, e.g.
 the Cognito component also contains some notes on SES, Route 53, and I think certificate management as required to complete Cognito administrative/Ops workflows.
