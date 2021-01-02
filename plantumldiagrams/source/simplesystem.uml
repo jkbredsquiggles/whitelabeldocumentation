@@ -1,0 +1,21 @@
+@startuml
+skinparam componentStyle rectangle
+[static web site host] as StaticHost
+[client application] as Client
+component "configuration services" {
+component "API Gateway" {
+[public route] as PublicRoute
+}
+[Configuration Lambda] as ConfigurationService
+database configdatatable
+database arbitrarydatatable1
+database arbitrarydatatable2
+} 
+
+Client -> StaticHost : "get minmally configured web app"
+Client -> PublicRoute : "get public configuration"
+PublicRoute --> ConfigurationService : "get public configuration"
+ConfigurationService --> configdatatable : "get configuration"
+ConfigurationService --> arbitrarydatatable1 : "get arbitrary data"
+ConfigurationService --> arbitrarydatatable2 : "get arbitrary data"
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+skinparam componentStyle rectangle
+[static web site host] as StaticHost
+[client application] as Client
+component "configuration services" {
+component "API Gateway" {
+[public route] as PublicRoute
+[authorizer] as Authorizer
+[private route] as PrivateRoute
+}
+[Configuration Lambda] as ConfigurationService
+database configdatatable
+database arbitrarydatatable1
+database arbitrarydatatable2
+} 
+[Cognito Authentication Service] as CognitoAuth
+
+Client -> StaticHost : "get minmally configured web app"
+Client --> CognitoAuth : "autheticate"
+Client -> PublicRoute : "get public configuration"
+Client -> PrivateRoute : "get protected configuration"
+PrivateRoute -> Authorizer : "authenticate and authorize request"
+Authorizer ..> CognitoAuth : "validate auth token"
+PublicRoute --> ConfigurationService : "get public configuration"
+PrivateRoute --> ConfigurationService : "get protected configuration"
+ConfigurationService --> configdatatable : "get configuration"
+ConfigurationService --> arbitrarydatatable1 : "get arbitrary data"
+ConfigurationService --> arbitrarydatatable2 : "get arbitrary data"
+@enduml
