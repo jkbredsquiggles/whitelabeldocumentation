@@ -1,6 +1,10 @@
 @startuml
 skinparam componentStyle rectangle
+component "web site host" {
+component "AWS Amplify" {
 [static web site host] as StaticHost
+}
+}
 [client application] as Client
 component "configuration services" {
 component "API Gateway" {
@@ -8,14 +12,18 @@ component "API Gateway" {
 [authorizer] as Authorizer
 [private route] as PrivateRoute
 }
+component "AWS Lambda" {
 [Configuration Lambda] as ConfigurationService
+}
 database configdatatable
 database arbitrarydatatable1
 database arbitrarydatatable2
 } 
+component "AWS Cognito" {
 [Cognito Authentication Service] as CognitoAuth
+}
 
-Client -> StaticHost : "get minmally configured web app"
+Client --> StaticHost : "get minmally configured web app"
 Client --> CognitoAuth : "autheticate"
 Client -> PublicRoute : "get public configuration"
 Client -> PrivateRoute : "get protected configuration"
