@@ -40,18 +40,18 @@ Instructions on Amplify are currently in the site documentation (possibly only i
 ## Components of a simple event site
 
 
-![simple event site](plantumldiagrams/artefacts/simplesystem.png)
+![simple event site](Overview/plantumldiagrams/artefacts/simplesystem.png)
 
 ## Components of a simple event site with authenticated access
 
 
-![authenticated simple event site](plantumldiagrams/artefacts/simplesystemwithauthentication.png)
+![authenticated simple event site](Overview/plantumldiagrams/artefacts/simplesystemwithauthentication.png)
 
 ## Components of an event site with authenticated access to the chat service
 
 Configuration details removed
 
-![authenticated event site with chat](plantumldiagrams/artefacts/simpleauthchatsystem.png)
+![authenticated event site with chat](Overview/plantumldiagrams/artefacts/simpleauthchatsystem.png)
 
 
 
