@@ -81,7 +81,7 @@ Not needed for current conversation types
 - retrieve all messages in the conversation since the supplied time stamp
 - send them to th user
 
-![get messages since](chat/plantumldiagrams/artefacts/getconversationmessagesaftercomment.png)
+![get messages since](chat/plantumldiagrams/artefacts/getconversationmessagesaftercommand.png)
 
 ## Get Conversation Participants
 
