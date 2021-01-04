@@ -1,32 +1,40 @@
 @startuml
 skinparam componentStyle rectangle
 component "web site host" {
-component "AWS Amplify" {
-[static web site host] as StaticHost
+  component "AWS Amplify" {
+    [static web site host] as StaticHost
+  }
 }
-}
-[client application] as Client
-component "configuration services" {
-component "API Gateway" {
-[public route] as PublicRoute
-[authorizer] as Authorizer
-[private route] as PrivateRoute
-}
-component "AWS Lambda" {
-[Configuration Lambda] as ConfigurationService
-}
-database configdatatable
-database arbitrarydatatable1
-database arbitrarydatatable2
-} 
-component "AWS Cognito" {
-[Cognito Authentication Service] as CognitoAuth
+component "browser" as Browser {
+  component "client application"  {
+    [configuration service] as ClientConfigurationService
+    [authentication service] as ClientAuthenticationService
+  } 
 }
 
-Client --> StaticHost : "get minmally configured web app"
-Client --> CognitoAuth : "autheticate"
-Client -> PublicRoute : "get public configuration"
-Client -> PrivateRoute : "get protected configuration"
+component "configuration services" {
+  component "API Gateway" {
+    [public route] as PublicRoute
+    [authorizer] as Authorizer
+    [private route] as PrivateRoute
+  }
+  component "AWS Lambda" {
+    [Configuration Lambda] as ConfigurationService
+  }
+  database configdatatable
+  database arbitrarydatatable1
+  database arbitrarydatatable2
+}
+component "AWS Cognito" {
+  [Cognito Authentication Service] as CognitoAuth
+}
+
+Browser --> StaticHost : "get minimally configured web app"
+ClientConfigurationService -> PublicRoute : "get configuration"
+ClientConfigurationService -> PrivateRoute : "get protected configuration"
+ClientConfigurationService -> ClientAuthenticationService : "get credentials"
+ClientAuthenticationService -> CognitoAuth : "authorize and get credentials"
+
 PrivateRoute -> Authorizer : "authenticate and authorize request"
 Authorizer ..> CognitoAuth : "validate auth token"
 PublicRoute --> ConfigurationService : "get public configuration"

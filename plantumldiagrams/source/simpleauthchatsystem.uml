@@ -1,0 +1,58 @@
+@startuml
+skinparam componentStyle rectangle
+component "web site host" {
+  component "AWS Amplify" {
+    [static web site host] as StaticHost
+  }
+}
+component "browser" as Browser {
+  component "client application"  {
+    [configuration service] as ClientConfigurationService
+    [chat service] as ClientChatService
+    [authentication service] as ClientAuthenticationService
+  }
+}
+[configuration services] as ConfigurationServices
+component "AWS Cognito" {
+  [Cognito Authentication Service] as CognitoAuth
+}
+
+
+Browser -> StaticHost : "get minimally configured web app"
+ClientAuthenticationService -> CognitoAuth : "authenticate"
+ClientConfigurationService -> ConfigurationServices : "get configuration"
+ClientConfigurationService -> ClientAuthenticationService : "get credentials"
+ClientChatService -> ClientConfigurationService
+ClientChatService -> ClientAuthenticationService : "get credentials"
+
+
+
+component "chat services" {
+  component "API Gateway" {
+    [authorizer] as Authorizer
+    [route] as ChatLambdaRoute
+  }
+  component "AWS Lambda" {
+    [Chat Lambda] as ChatService
+  }
+  database userdatatable
+  database conversationdatatable
+  database conversationparticipantsdatatable
+  database messagedatatable
+  database replyconversationdatatable
+}
+component "AWS Cognito" {
+  [Cognito Authentication Service] as CognitoAuth
+}
+
+ClientChatService <--> ChatLambdaRoute : "chat command and event channel"
+
+ChatLambdaRoute -> Authorizer : "authenticate and authorize command"
+Authorizer ..> CognitoAuth : "validate auth token"
+ChatLambdaRoute <--> ChatService : "chat command and event channel"
+ChatService --> userdatatable : "manage users"
+ChatService --> conversationparticipantsdatatable : "manage conversation participants"
+ChatService --> conversationdatatable : "manage conversations"
+ChatService --> messagedatatable : "manage messages"
+ChatService --> replyconversationdatatable : "manage reply conversations"
+@enduml

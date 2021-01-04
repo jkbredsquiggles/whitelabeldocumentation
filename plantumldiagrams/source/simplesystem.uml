@@ -1,25 +1,29 @@
 @startuml
 skinparam componentStyle rectangle
 component "web site host" {
-component "AWS Amplify" {
-[static web site host] as StaticHost
+  component "AWS Amplify" {
+    [static web site host] as StaticHost
+  }
 }
+component "browser" as Browser {
+  component "client application"  {
+    [configuration service] as ClientConfigurationService
+  } 
 }
-[client application] as Client
 component "configuration services" {
-component "API Gateway" {
-[public route] as PublicRoute
-}
-component "AWS Lambda" {
-[Configuration Lambda] as ConfigurationService
-}
-database configdatatable
-database arbitrarydatatable1
-database arbitrarydatatable2
+  component "API Gateway" {
+    [public route] as PublicRoute
+  }
+  component "AWS Lambda" {
+    [Configuration Lambda] as ConfigurationService
+  }
+  database configdatatable
+  database arbitrarydatatable1
+  database arbitrarydatatable2
 }
 
-Client -> StaticHost : "get minmally configured web app"
-Client -> PublicRoute : "get public configuration"
+ClientConfigurationService -> StaticHost : "get minimally configured web app"
+ClientConfigurationService -> PublicRoute : "get public configuration"
 PublicRoute --> ConfigurationService : "get public configuration"
 ConfigurationService --> configdatatable : "get configuration"
 ConfigurationService --> arbitrarydatatable1 : "get arbitrary data"
