@@ -1,0 +1,8 @@
+@startuml
+ChatClient -> APIGateway : GetMessagesAfterCommand
+APIGateway -> Authorization : AuthorizeCommand
+Authorization --> APIGateway : Authorized
+APIGateway -> ChatLambda : AuthorizedGetMessagesAfterCommand
+ChatLambda --> APIGateway : NewMessageEvent, one for each message found
+APIGateway --> ChatClient : NewMessageEvent
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+participant AlreadyLoggedInConvserationParticipants
+ChatClient -> APIGateway : AddReplayMessageCommand
+APIGateway -> Authorization : AuthorizeCommand
+Authorization --> APIGateway : Authorized
+APIGateway -> ChatLambda : AuthorizedAddReplyMessageCommand
+ChatLambda --> APIGateway : NewReplyConverstionEvent sent if reply conversation does not yet exist
+APIGateway --> ChatClient : NewReplyConverstionEvent
+APIGateway --> AlreadyLoggedInConvserationParticipants : NewReplyConverstionEvent
+ChatLambda --> APIGateway : NewMessageEvent
+APIGateway --> ChatClient : NewMessageEvent
+APIGateway --> AlreadyLoggedInConvserationParticipants : NewMessageEvent
+@enduml

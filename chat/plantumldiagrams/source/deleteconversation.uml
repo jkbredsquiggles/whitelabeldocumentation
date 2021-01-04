@@ -1,0 +1,6 @@
+@startuml
+ChatClient -> APIGateway : DeleteConversationCommand
+APIGateway -> Authorization : AuthorizeCommand
+Authorization --> APIGateway : Authorized
+APIGateway -> ChatLambda : AuthorizedDeleteConversationCommand
+@enduml

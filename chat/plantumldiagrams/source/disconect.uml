@@ -1,0 +1,9 @@
+@startuml
+participant AlreadyLoggedInChatClients
+ChatClient -> APIGateway : DisconnectCommand
+APIGateway -> Authorization : AuthorizeCommand
+Authorization --> APIGateway : Authorized
+APIGateway -> ChatLambda : AuthorizedDisconnectCommand
+ChatLambda --> APIGateway : DisconnectUserEvent
+APIGateway --> AlreadyLoggedInChatClients : DisconnectUserEvent
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+participant AlreadyLoggedInConvserationParticipants
+ChatClient -> APIGateway : AddMessageCommand
+APIGateway -> Authorization : AuthorizeCommand
+Authorization --> APIGateway : Authorized
+APIGateway -> ChatLambda : AuthorizedAddMessageCommand
+ChatLambda --> APIGateway : NewMessageEvent
+APIGateway --> ChatClient : NewMessageEvent
+APIGateway --> AlreadyLoggedInConvserationParticipants : NewMessageEvent
+@enduml
