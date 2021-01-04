@@ -47,6 +47,12 @@ Instructions on Amplify are currently in the site documentation (possibly only i
 
 ![authenticated simple event site](plantumldiagrams/artefacts/simplesystemwithauthentication.png)
 
+## Components of an event site with authenticated access to the chat service
+
+Configuration details removed
+
+![authenticated event site with chat](plantumldiagrams/artefacts/simpleauthchatsystem.png)
+
 
 
 
