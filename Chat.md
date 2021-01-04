@@ -1,5 +1,9 @@
 # Chat overview
 
+Missing functionality:
+- Get conversation participants (all conversations are global or DMs so information is not needed in V1)
+- Get active users (although all users are sent in response to connect, so re-connect could be used in V1)
+- Get messages prior to (not sure if it was requested in V1)
 
 
 # Message sequences
