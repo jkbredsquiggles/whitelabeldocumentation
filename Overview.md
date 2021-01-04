@@ -21,7 +21,7 @@ The have roughly the same high level structure.
   - protected configuration information (e.g. player clip id) based on event/organization
   - customizable emails (currently hardcoded) based on event/organization
   - unprotected configuration information based on event/organization (stuff that we'd prefer to not be in the code)
-- We use AWS SES for email notifications (not turned on yet); currently only used by Cognito
+- We use AWS SES for email notifications; currently only used by Cognito
 - AWS TLS certificate management
 - AWS Route 53 for DNS
 
