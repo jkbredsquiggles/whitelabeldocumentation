@@ -1,6 +1,33 @@
 # Overview
 
-There are currently two systems:
+## High Level Inventory of Components
+
+### Web sites
+
+The Virtual Venues are SPA's, hosted, probably on S3, via Amplify.
+
+### Web services
+
+Lambda's and API Gateway
+
+### Certificates
+
+Provided by AWS
+
+### Miscellaneous
+
+We use Route 53 and an S3 bucket to route traffic from virtualvenue.ca to kingevents.ca. The bucket name is virtualvenue.ca.
+
+The virtualvenue.ca A record points to the S3 bucket. The S3 bucket hosts a static page that redirects to kingevents.ca
+
+According to the instructions we have to redirect to an apex domain and not a resource on that domain (need to verify).
+
+See https://aws.amazon.com/premiumsupport/knowledge-center/redirect-domain-route-53/
+
+
+## Virtual Venue Sites
+
+There are currently two web sites:
 - A simple one page site with no authentication that serves the player (SimpleEventStage)
 - A configurable venue hall site (virtualvenu) with optional authentication, a lobby, and zero of more of the following:
   - break out sesssion
