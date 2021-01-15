@@ -8,6 +8,8 @@ This is the first feature of VV that needs UI reactivity
 - we need to use "data" property of Vue to listen to the chatService's deeper data, instead of "inject"
 - This pattern is used throughtout the chat component
 
+https://forum.vuejs.org/t/computed-property-not-updating/21148/6
+
 ## Typescript
 
 The chatService and new chat-related components are written in typescript.
