@@ -2,7 +2,7 @@
 
 This is the first feature of VV that needs UI reactivity
 
-- e.g. When a new message is added to a conversation, the UI needs to detect this and re-render (without reloading the entire page)
+- e.g. When a new message is added to a conversation, the UI needs to detect this and automatically re-render (without reloading the entire page)
 - injecting chatService (which holds the data) into components will not provide reactivity on its deeper properties
 - so I'm not using "inject" for things that need to be reactive (ChatService and its data)
 - we need to use "data" property of Vue to listen to the chatService's deeper data, instead of "inject"
