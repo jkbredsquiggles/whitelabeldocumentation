@@ -109,6 +109,10 @@ Set up a custom domain. Use the event name.
         - click on the log group. There will be one set of entries (log stream) for each import job (the last portion of the log stream name will match the job name you selected above). Click on the lock stream name. There should be one log entry for each user with information to indicate whether the user was imported OK or not. If all users failed, there is likely a problem with the format of the csv file (e.g. missing column). If a few users failed, the entries for those users can be copied to another file, corrected, and uploaded in a new job.
     - Users are not sent email notifications (at least not in the default import process). Users must use the forgot password process.
 
+AWS documentation on the managing users workflows
+
+https://docs.aws.amazon.com/cognito/latest/developerguide/signing-up-users-in-your-app.html#allowing-users-to-sign-up-and-confirm-themselves
+
 
 Sample csv upload:
 ```
