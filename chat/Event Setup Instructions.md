@@ -35,7 +35,7 @@ In the AWS Cloudformation webpage, click `Create Stack`. Upload `masterstack.yam
 - Read/WriteCapacityUnits: capacity of the dynamodbs. I haven't tried anything but 5 
 - UseAuthorizationForLambda: tells the java/kotlin program whether or not to authorize tokens sent by the chat clients (currently this does nothing).
 
-This create all AWS resources needed for chat.
+This creates all AWS resources needed for chat.
 
 ## 3. Add Conversations to the DBs
 
