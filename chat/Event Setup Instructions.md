@@ -87,5 +87,4 @@ In the client's `config.json`, on any pages that wish to use Chat, use the follo
 `onlyShowConversations` is an array of conversation ids that you wish to exclusively show (e.g. mainstage conversation).
 `hideConversations` is an array of conversation ids that you wish to hide (e.g. mainstage conversation in the lounge).
 
-<br/>
-Done!
+## Done!
