@@ -79,6 +79,7 @@ In the client's `config.json`, on any pages that wish to use Chat, use the follo
   "kingEventsChatParameters": {
     "url": "[THE WEBSOCKET URL FROM ABOVE]",
     "showConversationMembers": true,
+    "allowNameChange": false,
     "onlyShowConversations": [],
     "hideConversations": []
   }
