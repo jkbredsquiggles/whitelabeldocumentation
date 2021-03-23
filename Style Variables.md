@@ -30,10 +30,17 @@
 
 ```
 {
-  "num-columns": 6,
-  "image-width": "200px",
-  "image-height": "200px"
+  "table-max-width": "200px",
+  "num-columns": 3,
+  "column-spacing": "20px",
+  "row-spacing": "20px",
+  "image-width": "180px",
+  "image-height": "180px",
+  "translate-x": "0px",
+  "translate-y": "0px"
 }
 ```
 
 - image-width/height: When using images as tables, their size in px
+- column/row spacing: spacing between tables, in px
+- translate-x/y: moves the entire page's grid of tables by px. Careful, each browser can have different sizing/zoom
