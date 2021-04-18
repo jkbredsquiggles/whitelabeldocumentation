@@ -29,25 +29,26 @@ upload `chat.gatewayandlambda.yaml` and `chat.dynamodb.yaml` to an AWS S3.
 
 In the AWS Cloudformation webpage, click `Create Stack`. Upload `chat.masterstack.prod.yaml` as a new template. Enter the following parameters when asked:
 
-- All Table/Index names can use their defaults. These are here so the lambda & tables use the same names.
+- All Table/Index names can use their defaults. These are here so the lambda & tables use the same names. 
+- Many of the resources names are derived from these parameters and do not use the parameters as is. Those resources are flagged with a '*'
 - CodeRepoBucket: the name of the bucket that contains the stacks and lambdas.
 - CodeRepoLambdaLocation: the folder that contains the lambdas.
 - CodeRepoCloudFormationStackLocation: the folder that contains the stacks.
 - ChatServiceGatewayAndLambdaScriptName: the chat service lambda and gateway cloudformation stack, e.g. chat.gatewayandlambda.yaml
-- ChatServiceLambdaFile: chat service lambda jar file name (root of actual name)
-- ChatServiceLambdaVersion: chat service lambda jar file version (suffix of file name)
+- ChatServiceLambdaFile: chat service lambda jar file name *
+- ChatServiceLambdaVersion: chat service lambda jar file version *
 - ChatServiceCognitoRegion: region that houses the cognito service (when the event/site has an authenticated chat)
 - ChatServiceCognitoPoolId: id of the cognito service (when the event/site has an authenticated chat)
 - ChatServiceCognitoClientAppId: client app id for the event web site (when the event/site has an authenticated chat)
 - ChatServiceDBDynamoDbScriptName: the name of the cloudformation stack that creates the chat db tables, e.g. `chat.dynamodb.yaml`
-- ChatServiceDBConversationTableName: name of the table that stores the event's chat conversation list (part of the name, full name is constructed from stack name and other parameters)
-- ChatServiceDBConversationParticipantTableName: name of the table that stores the event's chat conversation participant list (part of the name, full name is constructed from stack name and other parameters)
-- ChatServiceDBMessageTableName: name of the table that stores the event's chat message (part of the name, full name is constructed from stack name and other parameters)
-- ChatServiceDBUserTableName: name of the table that stores the event's chat participants (part of the name, full name is constructed from stack name and other parameters)
-- ChatServiceDBConversationConversationTypeIndexName - conversation table secondary index (part of the name, full name is constructed from stack name and other parameters)
-- ChatServiceDBConversationParticipantUserIdIndexName - conversation participant table secondary index (part of the name, full name is constructed from stack name and other parameters)
-- ChatServiceDBConversationParticipantConversationIdIndexName - conversation participant table secondary index (part of the name, full name is constructed from stack name and other parameters)
-- ChatServiceDBMessageConversationIdCreatedIndexName - conversation table secondary index (part of the name, full name is constructed from stack name and other parameters)
+- ChatServiceDBConversationTableName: name of the table that stores the event's chat conversation list *
+- ChatServiceDBConversationParticipantTableName: name of the table that stores the event's chat conversation participant list *
+- ChatServiceDBMessageTableName: name of the table that stores the event's chat message *
+- ChatServiceDBUserTableName: name of the table that stores the event's chat participants *
+- ChatServiceDBConversationConversationTypeIndexName - conversation table secondary index *
+- ChatServiceDBConversationParticipantUserIdIndexName - conversation participant table secondary index *
+- ChatServiceDBConversationParticipantConversationIdIndexName - conversation participant table secondary index *
+- ChatServiceDBMessageConversationIdCreatedIndexName - conversation table secondary index *
 
 - Read/WriteCapacityUnits: capacity of the dynamodbs. I haven't tried anything but 5 
 
