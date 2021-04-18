@@ -69,7 +69,7 @@ The `Conversation` table starts out empty, we need to add conversations to it on
 ```
 you can use https://www.uuidgenerator.net/ for a random id, and https://www.epochconverter.com/ to get the current created/lastConnected epoch times. Note that the times are strings.
 
-Then, add any conversations you'd like to the `Conversation` table:
+Then, add any conversations you'd like to the `Conversation` table. There will likely be a conversation for the main stage chats (one per?) and for each lounge.
 ```
 {
   "conversationType": "OpenToAll",
