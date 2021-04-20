@@ -65,7 +65,8 @@ The `Conversation` table starts out empty, we need to add conversations to it on
   "created": "1614722594",
   "id": "83003df6-3eec-4bcc-81a2-c90ccc790414",
   "lastConnected": "1614748958",
-  "name": "Admin User"
+  "name": "Admin User",
+  "locations": []
 }
 ```
 you can use https://www.uuidgenerator.net/ for a random id, and https://www.epochconverter.com/ to get the current created/lastConnected epoch times. Note that the times are strings.
