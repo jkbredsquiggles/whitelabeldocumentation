@@ -44,3 +44,17 @@
 - item-width/height: For images or items in tables, height and width. Width is clipped to table-max-width
 - column/row spacing: spacing between tables, in px
 - translate-x/y: moves the entire page's grid of tables by px. Careful, each browser can have different sizing/zoom
+
+# Per item style variables
+
+{
+  "active-route-link-colour": "red",
+  "primary-colour": "#e8bc43",
+  "primary-gradient-colour": "#edc34e",
+  "primary-text-colour": "black",
+  "secondary-colour": "#d56ef5",
+  "secondary-gradient-colour": "#e07aff",
+  "secondary-text-colour": "black",
+}
+
+As defined above, defined at global level, but can be overridden at table and item level
