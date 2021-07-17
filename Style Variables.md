@@ -34,13 +34,13 @@
   "num-columns": 3,
   "column-spacing": "20px",
   "row-spacing": "20px",
-  "image-width": "180px",
-  "image-height": "180px",
+  "item-width": "180px",
+  "item-height": "180px",
   "translate-x": "0px",
   "translate-y": "0px"
 }
 ```
 
-- image-width/height: When using images as tables, their size in px
+- item-width/height: For images or items in tables, height and width. Width is clipped to table-max-width
 - column/row spacing: spacing between tables, in px
 - translate-x/y: moves the entire page's grid of tables by px. Careful, each browser can have different sizing/zoom
