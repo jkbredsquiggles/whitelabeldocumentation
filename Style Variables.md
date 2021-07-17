@@ -46,7 +46,7 @@
 - translate-x/y: moves the entire page's grid of tables by px. Careful, each browser can have different sizing/zoom
 
 # Per item style variables
-
+```
 {
   "active-route-link-colour": "red",
   "primary-colour": "#e8bc43",
@@ -56,5 +56,5 @@
   "secondary-gradient-colour": "#e07aff",
   "secondary-text-colour": "black",
 }
-
+```
 As defined above, defined at global level, but can be overridden at table and item level
